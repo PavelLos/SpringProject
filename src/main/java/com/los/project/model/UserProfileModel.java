@@ -1,15 +1,12 @@
 package com.los.project.model;
 
 import com.los.project.validation.annotations.ValidEmail;
-import com.los.project.validation.annotations.ValidPassword;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Data
 public class UserProfileModel {
     @NotNull
     @NotEmpty
@@ -22,6 +19,7 @@ public class UserProfileModel {
 
     @NotNull
     @NotEmpty
-    @ValidPassword
     private String password;
+
+
 }

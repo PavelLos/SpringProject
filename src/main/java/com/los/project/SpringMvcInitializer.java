@@ -2,6 +2,7 @@ package com.los.project;
 
 import com.los.project.config.DataConfig;
 import com.los.project.config.RootConfig;
+import com.los.project.config.SecurityConfig;
 import com.los.project.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,7 +16,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{RootConfig.class, DataConfig.class};
+        return new Class[]{RootConfig.class, DataConfig.class, SecurityConfig.class};
     }
 
     @Override

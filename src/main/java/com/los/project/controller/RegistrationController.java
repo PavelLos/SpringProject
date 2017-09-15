@@ -1,33 +1,39 @@
 package com.los.project.controller;
 
-import com.los.project.model.UserProfileModel;
 import com.los.project.entity.User;
+import com.los.project.model.UserProfileModel;
+import com.los.project.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 @Controller
+@Slf4j
 public class RegistrationController {
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping(value = {"/registration"})
-    public ModelAndView registrationForm(@ModelAttribute("userForm") @Valid UserProfileModel accountDto, Model model,
-                                         BindingResult result, WebRequest request, Errors errors){
-        UserProfileModel userProfileModel = new UserProfileModel();
-        model.addAttribute(userProfileModel);
-        User registered = new User();
+    public String registrationForm(@ModelAttribute("registrationForm") @Valid UserProfileModel profileModel,
+                                   BindingResult result, WebRequest request, Errors errors) {
+        log.info("Registering user account with information: {}", profileModel);
+
+        User user = userService.registrationUser(profileModel);
+
         if (!result.hasErrors()) {
-            registered = createUserAccount(accountDto, result);
+            return "start";
         }
-        if (registered == null) {
-            result.rejectValue("email", "message.regError");
+        if (user == null) {
+            return "login1";
         }
-        return new ModelAndView();
+        return "login1";
     }
 }

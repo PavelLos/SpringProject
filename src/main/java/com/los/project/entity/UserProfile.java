@@ -16,6 +16,7 @@ public class UserProfile implements Serializable {
     private static final long serialVersionUID = 7501382330464013767L;
 
     @Id
+    @Column(name = "user_profile_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 

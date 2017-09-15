@@ -1,55 +1,53 @@
 package com.los.project.config;
 
 import lombok.extern.log4j.Log4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
+
 @Configuration
-@EnableJpaRepositories
 @EnableTransactionManagement
+@EnableJpaRepositories("com.los.project.repository")
 @PropertySource("classpath:database.properties")
-@ComponentScan("com.los.project.entity")
+@ComponentScan("com.los.project")
 @Log4j
 public class DataConfig {
-    @Value("${db.driverClassName}")
-    private String driverClassName;
-    @Value("${db.url}")
-    private String databaseUrl;
-    @Value("${db.username}")
-    private String databaseUsername;
-    @Value("${db.password}")
-    private String databasePassword;
-    @Value("${db.hibernate.dialect}")
-    private String dialect;
-    @Value("${db.hibernate.hbm2ddl.auto}")
-    private String hbm2ddl;
-    @Value("${db.hibernate.show_sql}")
-    private String showSql;
-    @Value("${db.entitymanager.packages.to.scan")
-    private String packagesToScan;
+
+    @Autowired
+    private Environment environment;
+
+    private static final String PROP_DATABASE_DRIVER = "db.driverClassName";
+    private static final String PROP_DATABASE_PASSWORD = "db.password";
+    private static final String PROP_DATABASE_URL = "db.url";
+    private static final String PROP_DATABASE_USERNAME = "db.username";
+    private static final String PROP_HIBERNATE_DIALECT = "db.hibernate.dialect";
+    private static final String PROP_HIBERNATE_SHOW_SQL = "db.hibernate.show_sql";
+    private static final String PROP_ENTITYMANAGER_PACKAGES_TO_SCAN = "db.entitymanager.packages.to.scan";
+    private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "db.hibernate.hbm2ddl.auto";
 
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(databaseUrl);
-        dataSource.setUsername(databaseUsername);
-        dataSource.setPassword(databasePassword);
+        dataSource.setDriverClassName(environment.getRequiredProperty(PROP_DATABASE_DRIVER));
+        dataSource.setUrl(environment.getRequiredProperty(PROP_DATABASE_URL));
+        dataSource.setUsername(environment.getRequiredProperty(PROP_DATABASE_USERNAME));
+        dataSource.setPassword(environment.getRequiredProperty(PROP_DATABASE_PASSWORD));
 
         return dataSource;
     }
@@ -57,31 +55,34 @@ public class DataConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
-
 
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactory.setPackagesToScan("com.los.project.entity");
+        entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactory.setPackagesToScan(environment.getRequiredProperty(PROP_ENTITYMANAGER_PACKAGES_TO_SCAN));
         entityManagerFactory.setJpaProperties(hibernateProperties());
 
         return entityManagerFactory;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public JpaTransactionManager transactionManager() {
 
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return txManager;
     }
 
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        properties.put(org.hibernate.cfg.Environment.SHOW_SQL, showSql);
-        properties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddl);
+        properties.put(PROP_HIBERNATE_DIALECT, environment.getRequiredProperty(PROP_HIBERNATE_DIALECT));
+        properties.put(PROP_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
+        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, environment.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
 
         return properties;
     }

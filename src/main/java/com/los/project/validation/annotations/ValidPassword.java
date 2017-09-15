@@ -1,5 +1,7 @@
 package com.los.project.validation.annotations;
 
+import com.los.project.validation.PasswordConstraintValidator;
+
 import javax.validation.Constraint;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

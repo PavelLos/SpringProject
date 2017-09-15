@@ -7,17 +7,18 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "group")
 @Data
+@Table(name = "group")
 public class Group implements Serializable {
-    private static final long serialVersionUID = 8288674652342254686L;
+    private static final long serialVersionUID = -3381162020077290853L;
 
     @Id
     @Column(name = "group_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_profile_id")
     private GroupProfile groupProfile;
 
     @ManyToOne

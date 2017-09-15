@@ -1,14 +1,13 @@
 package com.los.project.service;
 
 import com.los.project.entity.User;
+import com.los.project.model.UserProfileModel;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface UserService extends UserDetailsService {
-    void registrationUser(User user);
+    User registrationUser(UserProfileModel userModel);
 
     void deleteUser(User user);
 

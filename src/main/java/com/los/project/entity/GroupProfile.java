@@ -16,7 +16,7 @@ public class GroupProfile implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne(optional = false, mappedBy = "groupProfile")
+    @OneToOne(mappedBy = "groupProfile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Group group;
 
     @Column(name = "name")
