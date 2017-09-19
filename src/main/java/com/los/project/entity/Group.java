@@ -8,13 +8,14 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "group")
+@Table(name = "groups")
 public class Group implements Serializable {
     private static final long serialVersionUID = -3381162020077290853L;
 
     @Id
     @Column(name = "group_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_seq_gen")
+    @SequenceGenerator(name = "groups_seq_gen", sequenceName = "group_id_seq")
     private Long id;
 
     @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -11,13 +11,14 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "user_profile")
-public class UserProfile implements Serializable {
+@Table(name = "users_profiles")
+public class UserProfile extends User implements Serializable {
     private static final long serialVersionUID = 7501382330464013767L;
 
     @Id
     @Column(name = "user_profile_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_profiles_seq_gen")
+    @SequenceGenerator(name = "users_profiles_seq_gen", sequenceName = "user_profile_id_seq")
     private Long id;
 
     @OneToOne(mappedBy = "userProfile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

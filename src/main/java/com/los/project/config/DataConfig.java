@@ -80,9 +80,10 @@ public class DataConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put(PROP_HIBERNATE_DIALECT, environment.getRequiredProperty(PROP_HIBERNATE_DIALECT));
-        properties.put(PROP_HIBERNATE_SHOW_SQL, environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
-        properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, environment.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+        properties.put("hibernate.dialect", environment.getRequiredProperty(PROP_HIBERNATE_DIALECT));
+        properties.put("hibernate.show_sql", environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+        properties.put("hibernate.format_sql", environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
 
         return properties;
     }

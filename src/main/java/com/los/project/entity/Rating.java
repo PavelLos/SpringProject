@@ -7,14 +7,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "rating")
+@Table(name = "ratings")
 @Data
 public class Rating implements Serializable {
     private static final long serialVersionUID = -394491360254185591L;
 
     @Id
     @Column(name = "rating_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ratings_seq_gen")
+    @SequenceGenerator(name = "ratings_seq_gen", sequenceName = "rating_id_seq")
     private Long id;
 
     @Column(name = "rating_type")

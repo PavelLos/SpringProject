@@ -1,7 +1,7 @@
 package com.los.project.controller;
 
 import com.los.project.entity.User;
-import com.los.project.model.UserProfileModel;
+import com.los.project.model.UserRegistrationModel;
 import com.los.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +22,24 @@ public class RegistrationController {
     private UserService userService;
 
     @PostMapping(value = {"/registration"})
-    public String registrationForm(@ModelAttribute("registrationForm") @Valid UserProfileModel profileModel,
+    public String registrationForm(@ModelAttribute("registrationForm") @Valid UserRegistrationModel profileModel,
                                    BindingResult result, WebRequest request, Errors errors) {
         log.info("Registering user account with information: {}", profileModel);
 
+        if (result.hasErrors()) {
+            return "login";
+        }
+        if(errors.hasErrors()){
+            return "login";
+        }
         User user = userService.registrationUser(profileModel);
 
-        if (!result.hasErrors()) {
-            return "start";
-        }
         if (user == null) {
-            return "login1";
+            return "login";
         }
-        return "login1";
+
+
+
+        return "login";
     }
 }

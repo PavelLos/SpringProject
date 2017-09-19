@@ -3,7 +3,7 @@ package com.los.project.service.impl;
 import com.los.project.entity.User;
 import com.los.project.entity.UserProfile;
 import com.los.project.entity.enums.UserRole;
-import com.los.project.model.UserProfileModel;
+import com.los.project.model.UserRegistrationModel;
 import com.los.project.repository.UserProfileRepository;
 import com.los.project.repository.UserRepository;
 import com.los.project.service.UserService;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserProfileRepository userProfileRepository;
 
     @Override
-    public User registrationUser(final UserProfileModel userModel) {
+    public User registrationUser(final UserRegistrationModel userModel) {
         log.info("Registration new user: " + userModel);
         final User user = new User();
         UserProfile userProfile = new UserProfile();

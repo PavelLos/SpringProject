@@ -1,8 +1,10 @@
 package com.los.project.config;
 
+import com.los.project.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,29 +23,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
 
-
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider
+                = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(encoder());
+        return authProvider;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/", "/login").anonymous()
+        http.authorizeRequests()
+                .antMatchers("/login").anonymous()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+                .antMatchers("/user/**").hasRole("USER");
+        http.formLogin()
                 .loginPage("/login").failureUrl("/login?error")
                 .loginProcessingUrl("/spring_security_check")
                 .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/", false)
                 .permitAll();
         http.logout()
-                .logoutSuccessUrl("/login?logout")
-                .and()
-                .csrf();
+                .logoutSuccessUrl("/login?logout");
+        http.csrf();
 
     }
 }

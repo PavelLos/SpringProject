@@ -8,14 +8,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comments")
 @Data
 public class Comment implements Serializable {
     private static final long serialVersionUID = -267201587205236364L;
 
     @Id
     @Column(name = "comment_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comments_seq_gen")
+    @SequenceGenerator(name = "comments_seq_gen", sequenceName = "comment_id_seq")
     private Long id;
 
     @Column(name = "comment_text")

@@ -1,6 +1,8 @@
 package com.los.project.validation;
 
 import com.los.project.validation.annotations.ValidEmail;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -11,6 +13,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
     private Pattern pattern;
     private Matcher matcher;
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {

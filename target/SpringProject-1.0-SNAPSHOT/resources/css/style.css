@@ -1,7 +1,21 @@
-/*body{
-    !*background-color: #c0deed;*!
-    background-color: lightgray;
-}*/
+body {
+    background-color: #f5f7fa;
+}
+
+
+.media .avatar {
+    width: 64px;
+    height: 64px;
+}
+
+.card .avatar {
+    /*border-radius: 50%;*/
+}
+
+.navbar .dropdown-menu .button-a{
+    color: cyan;
+}
+
 
 html,
 body,
@@ -11,17 +25,9 @@ header,
 }
 
 #intro {
-    background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+    background: url("../img/project/zimnyaya_planeta-min.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-
-
-
-
-.custom-margin{
-    margin-right: 5px;
 }
