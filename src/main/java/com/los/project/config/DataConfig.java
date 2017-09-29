@@ -32,10 +32,11 @@ public class DataConfig {
 
     private static final String PROP_DATABASE_DRIVER = "db.driverClassName";
     private static final String PROP_DATABASE_PASSWORD = "db.password";
-    private static final String PROP_DATABASE_URL = "db.url";
     private static final String PROP_DATABASE_USERNAME = "db.username";
+    private static final String PROP_DATABASE_URL = "db.url";
     private static final String PROP_HIBERNATE_DIALECT = "db.hibernate.dialect";
     private static final String PROP_HIBERNATE_SHOW_SQL = "db.hibernate.show_sql";
+    private static final String PROP_HIBERNATE_FORMAT_SQL = "db.hibernate.format_sql";
     private static final String PROP_ENTITYMANAGER_PACKAGES_TO_SCAN = "db.entitymanager.packages.to.scan";
     private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "db.hibernate.hbm2ddl.auto";
 
@@ -83,7 +84,7 @@ public class DataConfig {
         properties.put("hibernate.dialect", environment.getRequiredProperty(PROP_HIBERNATE_DIALECT));
         properties.put("hibernate.show_sql", environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
         properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
-        properties.put("hibernate.format_sql", environment.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
+        properties.put("hibernate.format_sql", environment.getRequiredProperty(PROP_HIBERNATE_FORMAT_SQL));
 
         return properties;
     }

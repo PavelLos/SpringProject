@@ -15,8 +15,7 @@ public class Post implements Serializable {
 
     @Id
     @Column(name = "post_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "posts_seq_gen")
-    @SequenceGenerator(name = "posts_seq_gen", sequenceName = "post_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "post_text")

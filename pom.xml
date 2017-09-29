@@ -42,6 +42,7 @@
         <spring-data-jpa.version>1.11.6.RELEASE</spring-data-jpa.version>
         <HikariCP.version>2.6.3</HikariCP.version>
         <passay.version>1.3.0</passay.version>
+        <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
     </properties>
 
     <dependencies>
@@ -77,13 +78,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>${spring-security-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security-config.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.kerberos</groupId>
+            <artifactId>spring-security-kerberos-web</artifactId>
+            <version>1.0.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -125,6 +126,11 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.0.Beta2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
         </dependency>
         <dependency>
             <groupId>org.passay</groupId>

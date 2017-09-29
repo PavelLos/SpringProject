@@ -1,10 +1,17 @@
 package com.los.project.entity.enums;
 
-public enum UserRole {
-    ADMIN,
-    USER,
-    ANONYMOUS;
+import lombok.Getter;
 
-    UserRole() {
+@Getter
+public enum UserRole {
+    ADMIN("ADMIN"),
+    USER("USER"),
+    ANONYMOUS("ANONYMOUS");
+
+    private String role;
+
+    UserRole(String role) {
+        this.role = role;
     }
+
 }

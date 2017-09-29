@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 
@@ -21,25 +20,27 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping(value = {"/registration"})
-    public String registrationForm(@ModelAttribute("registrationForm") @Valid UserRegistrationModel profileModel,
-                                   BindingResult result, WebRequest request, Errors errors) {
-        log.info("Registering user account with information: {}", profileModel);
+    public String registrationForm(@ModelAttribute("registrationForm") @Valid UserRegistrationModel registrationModel,
+                                   BindingResult result, Errors errors) {
+        log.info("Registering user account with information: {}", registrationModel);
+
+        int i = 0;
+
 
         if (result.hasErrors()) {
             return "login";
         }
-        if(errors.hasErrors()){
+        if (errors.hasErrors()) {
             return "login";
         }
-        User user = userService.registrationUser(profileModel);
-
+        User user = userService.registrationUser(registrationModel);
         if (user == null) {
             return "login";
         }
 
 
-
-        return "login";
+        return "redirect:wall";
     }
 }

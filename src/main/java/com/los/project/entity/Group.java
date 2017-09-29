@@ -14,8 +14,7 @@ public class Group implements Serializable {
 
     @Id
     @Column(name = "group_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_seq_gen")
-    @SequenceGenerator(name = "groups_seq_gen", sequenceName = "group_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

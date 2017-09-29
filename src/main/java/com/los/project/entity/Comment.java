@@ -15,8 +15,7 @@ public class Comment implements Serializable {
 
     @Id
     @Column(name = "comment_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comments_seq_gen")
-    @SequenceGenerator(name = "comments_seq_gen", sequenceName = "comment_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "comment_text")

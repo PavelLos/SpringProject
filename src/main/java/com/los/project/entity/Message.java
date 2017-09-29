@@ -14,8 +14,7 @@ public class Message implements Serializable {
 
     @Id
     @Column(name = "message_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messages_seq_gen")
-    @SequenceGenerator(name = "messages_seq_gen", sequenceName = "message_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

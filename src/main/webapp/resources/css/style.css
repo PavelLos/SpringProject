@@ -9,7 +9,7 @@ body {
 }
 
 .card .avatar {
-    /*border-radius: 50%;*/
+    border-radius: 50%;
 }
 
 .navbar .dropdown-menu .button-a{

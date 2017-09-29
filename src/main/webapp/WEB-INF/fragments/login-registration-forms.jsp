@@ -24,11 +24,11 @@
                                    modelAttribute="${loginForm}" class="form-horizontal validate"
                                    enctype="utf8">
                             <div class="md-form">
-                                <input type="text" id="Form-email1" class="form-control validate" data-error="${error}">
+                                <input type="text" name="login" id="Form-email1" class="form-control validate" data-error="${error}" required>
                                 <label for="Form-email1"><spring:message code="label.email"/></label>
                             </div>
                             <div class="md-form">
-                                <input type="password" id="Form-pass" class="form-control validate" data-error="${error}">
+                                <input type="password" name="password" id="Form-pass" class="form-control validate" data-error="${error}" required>
                                 <label for="Form-pass"><spring:message code="label.password"/></label>
                                 <p class="font-small blue-text d-flex justify-content-end">
                                     <a href="#" class="cyan-text ml-1"><spring:message code="label.forgot_pass"/></a>
@@ -57,22 +57,20 @@
                                    modelAttribute="${registrationForm}" class="form-horizontal validate"
                                    enctype="utf8">
                             <div class="md-form">
-                                <input type="text" name="login" class="form-control validate"
-                                       id="inputLoginRegistration"
-                                       aria-describedby="sizing-addon3">
+                                <input type="text" name="login" class="form-control validate" id="inputLoginRegistration" aria-describedby="sizing-addon3" required>
                                 <label for="inputLoginRegistration" data-error="${error}"
                                        data-success="right"><spring:message
                                         code="label.login"/></label>
                             </div>
                             <div class="md-form">
                                 <input type="email" name="email" class="form-control validate" data-error="${error}"
-                                       id="inputEmailRegistration">
+                                       id="inputEmailRegistration" required>
                                 <label for="inputEmailRegistration"><spring:message
                                         code="label.email"/></label>
                             </div>
                             <div class="md-form">
                                 <input type="password" name="password" class="form-control validate" data-error="${error}"
-                                       id="inputPasswordRegistration">
+                                       id="inputPasswordRegistration" required>
                                 <label for="inputPasswordRegistration"><spring:message
                                         code="label.password"/></label>
                             </div>
