@@ -5,19 +5,14 @@
     <jsp:include page="../sections/head-config.jsp"/>
 </head>
 <body>
-
-<header>
+<main>
     <jsp:include page="../fragments/header.jsp"/>
     <div id="intro" class="view">
         <div class="full-bg-img">
             <div style="height: 40px"></div>
             <jsp:include page="../fragments/login-registration-forms.jsp"/>
         </div>
-
     </div>
-</header>
-<main>
-
 </main>
 
 <footer>

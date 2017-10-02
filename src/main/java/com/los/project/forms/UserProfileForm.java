@@ -1,4 +1,4 @@
-package com.los.project.model;
+package com.los.project.forms;
 
 import com.los.project.entity.Image;
 import com.los.project.entity.enums.Sex;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UserProfileModel {
+public class UserProfileForm {
 
     private String firstName;
 

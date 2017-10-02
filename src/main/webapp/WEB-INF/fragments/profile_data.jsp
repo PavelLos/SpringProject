@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
             <!--Title-->
-            <a><h4 class="card-title">>${profile.firstName}</h4></a>
+            <a><h4 class="card-title">${profile.login}</h4></a>
             <a class="card-meta">Friends</a>
 
             <!--Text-->

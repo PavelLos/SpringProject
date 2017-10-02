@@ -11,8 +11,10 @@
     <jsp:include page="../sections/head-config.jsp"/>
 </head>
 <body>
+<main>
 <jsp:include page="../fragments/header.jsp"/>
 <jsp:include page="../fragments/profile_data.jsp"/>
 <jsp:include page="../sections/scropts.jsp"/>
+</main>
 </body>
 </html>

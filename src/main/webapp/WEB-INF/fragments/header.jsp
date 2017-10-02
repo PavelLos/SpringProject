@@ -3,7 +3,7 @@
 <spring:url value="/user/profile" var="profileUrl"/>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark cyan">
-    <a class="navbar-brand" href="#">Social</a>
+    <a class="navbar-brand" href="/">Social</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
             aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuProfile">
                     <a class="dropdown-item" href="${profileUrl}"><spring:message
                             code="header.profile.my_account"/></a>
-                    <a class="dropdown-item" href="/login"><spring:message
+                    <a class="dropdown-item" href="/logout"><spring:message
                             code="header.profile.log_out"/></a>
                 </div>
             </li>

@@ -1,15 +1,17 @@
 package com.los.project.validation;
 
 
-import com.los.project.model.UserRegistrationModel;
+import com.los.project.forms.UserRegistrationForm;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+@Component
 public class RegistrationValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
-        return UserRegistrationModel.class.isAssignableFrom(aClass);
+        return UserRegistrationForm.class.isAssignableFrom(aClass);
     }
 
     @Override

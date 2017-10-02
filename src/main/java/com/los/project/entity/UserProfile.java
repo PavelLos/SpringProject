@@ -20,9 +20,6 @@ public class UserProfile implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "userProfile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private User user;
-
     @Column(name = "login")
     private String login;
 

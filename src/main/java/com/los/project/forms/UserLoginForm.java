@@ -1,28 +1,23 @@
-package com.los.project.model;
+package com.los.project.forms;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
-public class UserRegistrationModel {
-    @NotNull
-    @Size(min = 2)
-    private String login;
+@Getter
+@Setter
+public class UserLoginForm {
 
     @NotNull
-    //@ValidEmail
+    @NotEmpty
     @Size(min = 6)
-    private String email;
+    private String loginOrEmail;
 
     @NotNull
+    @NotEmpty
     @Size(min = 6)
     private String password;
-
-
 }

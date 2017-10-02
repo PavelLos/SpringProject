@@ -1,22 +1,18 @@
 package com.los.project.service;
 
 import com.los.project.entity.User;
-import com.los.project.model.UserRegistrationModel;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.los.project.entity.UserProfile;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public interface UserService extends UserDetailsService {
-    User registrationUser(UserRegistrationModel userModel);
-
-    void deleteUser(User user);
-
-    User getUserById(long id);
-
-    List<User> getUserList();
-
-    List<User> getUserByLogin(String login);
-
-    User getUserByEmail(String email);
-
+public interface UserService{
+    User registrationUser(UserProfile userProfile);
+    void authenticate(User user);
+    User getUserByUserProfile(UserProfile userProfile);
+    boolean loginExists(String login);
+    boolean emailExists(String email);
+    boolean isAuthenticated();
+    User currentUser();
+    boolean logout(HttpServletRequest request, HttpServletResponse response);
 }

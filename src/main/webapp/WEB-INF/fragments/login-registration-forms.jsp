@@ -19,21 +19,25 @@
                         <div class="text-center">
                             <h3 class="dark-grey-text mb-1"><strong><spring:message code="label.sign_in"/></strong></h3>
                         </div>
-                        <%--@elvariable id="${loginForm}" type="com.los.project.model.UserLoginModel"--%>
+                        <%--@elvariable id="${loginForm}" type="com.los.project.forms.UserLoginForm"--%>
                         <form:form method="POST" action="${contextPath}/login"
                                    modelAttribute="${loginForm}" class="form-horizontal validate"
                                    enctype="utf8">
                             <div class="md-form">
-                                <input type="text" name="login" id="Form-email1" class="form-control validate" data-error="${error}" required>
+                                <input type="text" name="login" id="Form-email1" class="form-control validate"
+                                       data-error="${error}">
                                 <label for="Form-email1"><spring:message code="label.email"/></label>
                             </div>
                             <div class="md-form">
-                                <input type="password" name="password" id="Form-pass" class="form-control validate" data-error="${error}" required>
+                                <input type="password" name="password" id="Form-pass" class="form-control validate"
+                                       data-error="${error}">
                                 <label for="Form-pass"><spring:message code="label.password"/></label>
                                 <p class="font-small blue-text d-flex justify-content-end">
                                     <a href="#" class="cyan-text ml-1"><spring:message code="label.forgot_pass"/></a>
                                 </p>
                             </div>
+                            <span>${error}</span>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="text-center mb-3">
                                 <button type="submit" class="btn btn-cyan btn-block btn-rounded z-depth-1a">
                                     <spring:message
@@ -52,28 +56,31 @@
                             <h3 class="dark-grey-text mb-1"><strong><spring:message
                                     code="label.sign_up"/></strong></h3>
                         </div>
-                        <%--@elvariable id="${registrationForm}" type="com.los.project.model.UserRegistrationModel"--%>
+                        <%--@elvariable id="${registrationForm}" type="com.los.project.forms.UserRegistrationForm"--%>
                         <form:form method="POST" action="${contextPath}/registration"
                                    modelAttribute="${registrationForm}" class="form-horizontal validate"
                                    enctype="utf8">
                             <div class="md-form">
-                                <input type="text" name="login" class="form-control validate" id="inputLoginRegistration" aria-describedby="sizing-addon3" required>
+                                <input type="text" name="loginRegistration" class="form-control validate"
+                                       id="inputLoginRegistration" aria-describedby="sizing-addon3">
                                 <label for="inputLoginRegistration" data-error="${error}"
                                        data-success="right"><spring:message
                                         code="label.login"/></label>
                             </div>
                             <div class="md-form">
-                                <input type="email" name="email" class="form-control validate" data-error="${error}"
-                                       id="inputEmailRegistration" required>
+                                <input type="email" name="emailRegistration" class="form-control validate" data-error="${error}"
+                                       id="inputEmailRegistration">
                                 <label for="inputEmailRegistration"><spring:message
                                         code="label.email"/></label>
                             </div>
                             <div class="md-form">
-                                <input type="password" name="password" class="form-control validate" data-error="${error}"
-                                       id="inputPasswordRegistration" required>
+                                <input type="password" name="passwordRegistration" class="form-control validate"
+                                       data-error="${error}"
+                                       id="inputPasswordRegistration">
                                 <label for="inputPasswordRegistration"><spring:message
                                         code="label.password"/></label>
                             </div>
+                            <span>${error}</span>
                             <div class="text-center mb-3">
                                 <button type="submit" class="btn btn-cyan btn-block btn-rounded z-depth-1a">
                                     <spring:message code="label.sign_up"/>

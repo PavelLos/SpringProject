@@ -1,60 +1,55 @@
 package com.los.project.entity;
 
-import com.los.project.entity.enums.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CustomUserDetails extends User implements UserDetails {
+public class CustomUserDetails implements UserDetails {
+
+    private User user;
 
     public CustomUserDetails(final User user) {
-        super(user);
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        for(UserRole role : this.getUserProfile().getRole(). ){
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
-            authorities.add(grantedAuthority);
-        }
-
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getUserProfile().getRole().getRole()));
         return authorities;
-        return ;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getUserProfile().getPasswordHash();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getUserProfile().getLogin();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

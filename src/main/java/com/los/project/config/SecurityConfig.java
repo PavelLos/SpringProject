@@ -1,5 +1,6 @@
 package com.los.project.config;
 
+import com.los.project.entity.enums.UserRole;
 import com.los.project.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,27 +20,34 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @ComponentScan(basePackageClasses = UserDetailsServiceImpl.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12);
-    }
-
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }*/
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/wall").hasRole(UserRole.USER.getRole())
+                .antMatchers("/user**").hasRole(UserRole.USER.getRole())
+                .antMatchers("/admin/**").hasRole(UserRole.ADMIN.getRole())
+                .anyRequest().hasRole(UserRole.USER.getRole());
+        http.formLogin()
+                .loginPage("/login")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/wall");
+        http.logout()
+                .logoutSuccessUrl("/login");
+        http.csrf().disable();
 
-    @Bean
-    public UserDetailsService springDataUserDetailsService() {
-        return userDetailsService;
     }
 
     @Bean
@@ -50,22 +58,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/wall").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().hasRole("USER")
-                .antMatchers("/login").permitAll();
-
-        http.formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/wall", false);
-        http.logout()
-                .logoutSuccessUrl("/login?logout");
-        http.csrf().disable();
-
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
     }
+
+    @Bean
+    public UserDetailsService springDataUserDetailsService() {
+        return userDetailsService;
+    }
+
+
 }
 
