@@ -12,17 +12,65 @@ body {
     border-radius: 50%;
 }
 
-.navbar .dropdown-menu .button-a{
+.card .avatar-size{
+    width: 300px;
+    height: 300px;
+}
+
+.navbar .btn-group .dropdown-menu a:hover {
+    color: #000 !important;
+}
+
+.navbar .btn-group .dropdown-menu a:active {
+    color: #fff !important;
+}
+
+/*.navbar .dropdown-menu .button-a{
     color: cyan;
+}*/
+
+
+body,
+.intro-image{
+    height: 100%;
+}
+
+.intro-image{
+    background: url("../img/project/zimnyaya_planeta-min.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body,
+main{
+    padding-top: 60px;
+    padding-bottom: 50px;
 }
 
 
-html,
+/*html,
 body,
 header,
 #intro {
     height: 100%;
 }
+
+.md-form .prefix {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 740px) {
+    .full-height,
+    .full-height body,
+    .full-height header,
+    .full-height header .view {
+        height: 1040px;
+    }
+}
+
 
 #intro {
     background: url("../img/project/zimnyaya_planeta-min.jpg") no-repeat center center fixed;
@@ -30,4 +78,4 @@ header,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+}*/

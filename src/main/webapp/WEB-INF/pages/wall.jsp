@@ -14,9 +14,7 @@
 
 <jsp:include page="../fragments/header.jsp"/>
 
-
 <main>
-    <div style="height: 40px"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
@@ -34,6 +32,6 @@
     </div>
 </main>
 
-<jsp:include page="../sections/scropts.jsp"/>
+<jsp:include page="../sections/scripts.jsp"/>
 </body>
 </html>

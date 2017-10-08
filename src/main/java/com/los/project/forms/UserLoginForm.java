@@ -13,7 +13,7 @@ public class UserLoginForm {
 
     @NotNull
     @NotEmpty
-    @Size(min = 6)
+    @Size(min = 2)
     private String loginOrEmail;
 
     @NotNull

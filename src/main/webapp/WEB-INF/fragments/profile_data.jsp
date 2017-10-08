@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="user" scope="request" type="com.los.project.entity.User"/>
 <%--
   Created by IntelliJ IDEA.
   User: pasha
@@ -7,27 +9,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="view overlay hm-white-slight z-depth-1-half">
-                <img src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg" alt="Sample image for first version of blog listing" class="img-fluid">
-                <a>
-                    <div class="mask"></div>
-                </a>
-            </div>
-            <div class="card-body">
-            <!--Title-->
-            <a><h4 class="card-title">${profile.login}</h4></a>
+    <div class="card">
+        <img src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
+             class="img-fluid avatar avatar-size mx-4 mt-4">
+        <div class="card-body mx-4 mb-3">
+            <hr>
+            <a><h4 class="card-title">${user.userProfile.login}</h4></a>
             <a class="card-meta">Friends</a>
 
-            <!--Text-->
             <p class="card-text">Anna is a web designer living in New York.</p>
             <hr>
-            <a class="card-meta"><span><i class="fa fa-user"></i>83 Friends</span></a>
-            <p class="card-meta float-right">Joined in 2012</p>
-        </div>
+            <a class="card-meta"><span><i class="fa fa-user"></i>Friends ${user.subscriberList.size()} </span></a>
+            <a class="card-meta">
+                <span><i class="fa fa-calendar">
+            </i><c:if test="${user.userProfile.birthday!=null}">${user.userProfile.birthday}</c:if>
+                </span></a>
+            <p class="card-meta float-right">Data 1111</p>
         </div>
     </div>
-    <div class="col-md-3"></div>
 </div>

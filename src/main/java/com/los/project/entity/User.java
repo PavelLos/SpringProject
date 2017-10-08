@@ -34,6 +34,10 @@ public class User implements Serializable {
     private List<Rating> ratingList;
 
     @ManyToMany
+    @JoinTable(name = "subscribers", joinColumns = @JoinColumn(name = "subscriber"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> subscriberList;
+
+    @ManyToMany
     @JoinTable(name = "group_users", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<Group> groupList;
 
