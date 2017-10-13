@@ -1,6 +1,7 @@
 package com.los.project.service.impl;
 
 import com.los.project.entity.User;
+import com.los.project.forms.UserEditProfileForm;
 import com.los.project.forms.UserRegistrationForm;
 import com.los.project.entity.UserProfile;
 import com.los.project.entity.enums.UserRole;
@@ -30,8 +31,15 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public UserProfile getUserProfileById(long id) {
-        return userProfileRepository.findUserProfileById(id);
+    public UserProfile editUserProfile(UserProfile userProfile, UserEditProfileForm editProfileForm) {
+        userProfile.setFirstName(editProfileForm.getFirstName());
+        userProfile.setLastName(editProfileForm.getLastName());
+        userProfile.setMiddleName(editProfileForm.getMiddleName());
+        userProfile.setEmail(editProfileForm.getEmail());
+        userProfile.setSex(editProfileForm.getSex());
+        userProfile.setBirthday(editProfileForm.getBirthday());
+        userProfile.setPhone(editProfileForm.getPhone());
+        return userProfile;
     }
 
     @Override

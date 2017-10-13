@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         user.setPostList(new ArrayList<>());
         user.setCommentList(new ArrayList<>());
         user.setRatingList(new ArrayList<>());
+        user.setSubscriberList(new ArrayList<>());
         user.setGroupList(new ArrayList<>());
         userRepository.saveAndFlush(user);
         return user;
@@ -52,6 +53,7 @@ public class UserServiceImpl implements UserService {
         Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
+
 
 
 
@@ -83,7 +85,7 @@ public class UserServiceImpl implements UserService {
             return null;
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication auth = securityContext.getAuthentication();
-        return userRepository.getUserByUserProfile(userProfileRepository.findUserProfileByEmailOrLogin(auth.getName(), auth.getName()).getId());
+        return userRepository.getUserByUserProfile(userProfileRepository.findUserProfileByEmailOrLogin(auth.getName(), auth.getName()));
     }
 
     @Override

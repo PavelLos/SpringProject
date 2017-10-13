@@ -41,4 +41,11 @@ public class User implements Serializable {
     @JoinTable(name = "group_users", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<Group> groupList;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userProfile=" + userProfile +
+                '}';
+    }
 }

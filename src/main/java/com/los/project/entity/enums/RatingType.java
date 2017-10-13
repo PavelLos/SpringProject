@@ -1,10 +1,15 @@
 package com.los.project.entity.enums;
 
+import lombok.Getter;
 
+@Getter
 public enum RatingType {
-    LIKE,
-    DISLIKE;
+    LIKE("LIKE"),
+    DISLIKE("DISLIKE");
 
-    RatingType() {
+    private String rating;
+
+    RatingType(String rating) {
+        this.rating = rating;
     }
 }

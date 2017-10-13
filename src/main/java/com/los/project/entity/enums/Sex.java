@@ -1,9 +1,15 @@
 package com.los.project.entity.enums;
 
-public enum Sex {
-    MALE,
-    FEMAILE;
+import lombok.Getter;
 
-    Sex() {
+@Getter
+public enum Sex {
+    MALE("MALE"),
+    FEMALE("FEMALE");
+
+    private String sex;
+
+    Sex(String sex) {
+        this.sex = sex;
     }
 }

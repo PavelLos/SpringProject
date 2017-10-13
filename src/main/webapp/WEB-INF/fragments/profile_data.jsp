@@ -19,11 +19,18 @@
 
             <p class="card-text">Anna is a web designer living in New York.</p>
             <hr>
-            <a class="card-meta"><span><i class="fa fa-user"></i>Friends ${user.subscriberList.size()} </span></a>
-            <a class="card-meta">
-                <span><i class="fa fa-calendar">
-            </i><c:if test="${user.userProfile.birthday!=null}">${user.userProfile.birthday}</c:if>
-                </span></a>
+            <%--<c:if test="${user.subscriberList != null}">
+                <a class="card-meta"><span><i class="fa fa-user"></i>Friends ${user.subscriberList.size()} </span></a>
+            </c:if>--%>
+            <c:if test="${user.userProfile.birthday!=null}">
+                <a class="card-meta"><span><i class="fa fa-calendar"></i>Data ${user.userProfile.birthday}</span></a>
+            </c:if>
+            <c:if test="${user.userProfile.email!=null}">
+                <a class="card-meta"><span><i class="fa fa-calendar"></i>Data ${user.userProfile.email}</span></a>
+            </c:if>
+            <c:if test="${user.userProfile.phone!=null}">
+                <a class="card-meta"><span><i class="fa fa-calendar"></i>Data ${user.userProfile.phone}</span></a>
+            </c:if>
             <p class="card-meta float-right">Data 1111</p>
         </div>
     </div>

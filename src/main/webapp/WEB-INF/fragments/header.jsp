@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <spring:url value="/user/profile" var="profileUrl"/>
+<spring:url value="/user/profile/edit" var="editProfileUrl"/>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar cyan">
     <a class="navbar-brand" href="/">Social</a>
@@ -27,6 +28,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuProfile">
                     <a class="dropdown-item" href="${profileUrl}"><spring:message
                             code="header.profile.my_account"/></a>
+                    <a class="dropdown-item" href="${editProfileUrl}"><spring:message
+                            code="header.profile.edit"/></a>
                     <a class="dropdown-item" href="/logout"><spring:message
                             code="header.profile.log_out"/></a>
                 </div>
