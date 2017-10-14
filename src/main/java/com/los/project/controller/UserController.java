@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/profile/edit")
-    public String editProfile(Model model) {
+    public String editProfile(Model model, Errors errors) {
         User user = userService.currentUser();
         UserEditProfileForm editProfileForm = new UserEditProfileForm();
         model.addAttribute("user", user);
@@ -50,7 +51,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user/profile/edit")
-    public String editProfile(@ModelAttribute("editProfile") @Validated UserEditProfileForm userEditProfileForm) {
+    public String editProfile(@ModelAttribute("editProfile") @Validated UserEditProfileForm userEditProfileForm, Errors errors) {
         User user = userService.currentUser();
         userProfileService.editUserProfile(user.getUserProfile(), userEditProfileForm);
         return "redirect:/user/profile";

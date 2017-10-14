@@ -57,104 +57,114 @@
                     <div class="col-lg-8">
 
                         <div class="form-group">
-                                <form:input path="firstName" class="form-control" type="text"
-                                            value="${user.userProfile.firstName}"/>
-                            <%--<input class="form-control" type="text"
-                            <c:choose>
-                            <c:when test="${user.userProfile.firstName !=null}">
-                                   value="${user.userProfile.firstName}"
-                            </c:when>
-
-                            <c:otherwise>
-                                   value=""
-                            </c:otherwise>
-                            </c:choose>>--%>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Last name:</label>
-                            <div class="col-lg-8">
-                                <form:input class="form-control" type="text" path="lastName"/>
-                                <%--<c:choose>
-                                <c:when test="${user.userProfile.lastName !=null}">
-                                       value="${user.userProfile.lastName}"
+                            <form:input path="firstName" class="form-control" type="text"
+                                        value="${user.userProfile.firstName}"/>
+                                <%--<input class="form-control" type="text"
+                                <c:choose>
+                                <c:when test="${user.userProfile.firstName !=null}">
+                                       value="${user.userProfile.firstName}"
                                 </c:when>
 
                                 <c:otherwise>
                                        value=""
                                 </c:otherwise>
                                 </c:choose>>--%>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last name:</label>
+                            <div class="col-lg-8">
+                                <form:input class="form-control" type="text" path="lastName"
+                                            value="${user.userProfile.lastName}"/>
+                                    <%--<c:choose>
+                                    <c:when test="${user.userProfile.lastName !=null}">
+                                           value="${user.userProfile.lastName}"
+                                    </c:when>
+
+                                    <c:otherwise>
+                                           value=""
+                                    </c:otherwise>
+                                    </c:choose>>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Middle Name:</label>
                             <div class="col-lg-8">
-                                <form:input class="form-control" type="text" path="middleName"/>
-                                <%--<c:choose>
-                                <c:when test="${user.userProfile.middleName !=null}">
-                                       value="${user.userProfile.middleName}"
-                                </c:when>
+                                <form:input class="form-control" type="text" path="middleName"
+                                            value="${user.userProfile.middleName}"/>
+                                    <%--<c:choose>
+                                    <c:when test="${user.userProfile.middleName !=null}">
+                                           value="${user.userProfile.middleName}"
+                                    </c:when>
 
-                                <c:otherwise>
-                                       value=""
-                                </c:otherwise>
-                                </c:choose>>--%>
+                                    <c:otherwise>
+                                           value=""
+                                    </c:otherwise>
+                                    </c:choose>>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <form:input class="form-control" type="text" path="email"/>
-                                <%--<c:choose>
-                                <c:when test="${user.userProfile.email !=null}">
-                                       value="${user.userProfile.email}"
-                                </c:when>
+                                <form:input class="form-control" type="text" path="email"
+                                            value="${user.userProfile.email}"/>
+                                    <%--<c:choose>
+                                    <c:when test="${user.userProfile.email !=null}">
+                                           value="${user.userProfile.email}"
+                                    </c:when>
 
-                                <c:otherwise>
-                                       value=""
-                                </c:otherwise>
-                                </c:choose>>--%>
+                                    <c:otherwise>
+                                           value=""
+                                    </c:otherwise>
+                                    </c:choose>>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Sex:</label>
                             <div class="px-3">
 
-                                <form:input path="sex" name="radio_group" type="radio" class="with-gap"  id="radio1"/>
+                                <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1"
+                                <c:if test="${user.userProfile.sex!=null}">checked</c:if>
+                                </form:input>
                                 <label for="radio1">Male</label>
 
-                                <input name="radio_group" type="radio" class="with-gap" id="radio2">
+                                <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1" <c:if test="${user.userProfile.sex!=null}">checked</c:if>
+
+                                <form:input name="radio_group_2" type="radio" class="with-gap" id="radio2" path="sex"/>
                                 <label for="radio2">Female</label>
-<%--
-                                <c:choose>
-                                    <c:when test="${user.userProfile.sex==Sex.MALE}">
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1" checked>
-                                        <label for="radio1">Male</label>
+                                <%--
+                                                                <c:choose>
+                                                                    <c:when test="${user.userProfile.sex==Sex.MALE}">
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1" checked>
+                                                                        <label for="radio1">Male</label>
 
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                        <label for="radio2">Female</label>
-                                    </c:when>
-                                    <c:when test="${user.userProfile.sex==Sex.FEMALE}">
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                        <label for="radio1">Male</label>
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
+                                                                        <label for="radio2">Female</label>
+                                                                    </c:when>
+                                                                    <c:when test="${user.userProfile.sex==Sex.FEMALE}">
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
+                                                                        <label for="radio1">Male</label>
 
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2" checked>
-                                        <label for="radio2">Female</label>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                        <label for="radio1">Male</label>
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2" checked>
+                                                                        <label for="radio2">Female</label>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
+                                                                        <label for="radio1">Male</label>
 
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                        <label for="radio2">Female</label>
-                                    </c:otherwise>
-                                </c:choose>
---%>
+                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
+                                                                        <label for="radio2">Female</label>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                --%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">Date of birthday:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="date" id="date-input"
+
+                                <form:input class="form-control" type="date" id="date-input" path="birthday"/>
+
+                                <%--<input class="form-control" type="date" id="date-input"
                                 <c:choose>
                                 <c:when test="${user.userProfile.birthday !=null}">
                                        value="${user.userProfile.birthday}"
@@ -163,14 +173,18 @@
                                 <c:otherwise>
                                        value=""
                                 </c:otherwise>
-                                </c:choose>>
+                                </c:choose>>--%>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Phone:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
+
+                                <form:input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
+                                            data-format="+375 (dd) ddd dd dd" path="phone" val/>
+
+                                <%--<input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
                                        data-format="+375 (dd) ddd dd dd"
                                 <c:choose>
                                 <c:when test="${user.userProfile.phone !=null}">
@@ -180,7 +194,7 @@
                                 <c:otherwise>
                                        value=""
                                 </c:otherwise>
-                                </c:choose>>
+                                </c:choose>>--%>
                             </div>
                         </div>
 
