@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="com.los.project.entity.enums.Sex" %>
 <%--
   Created by IntelliJ IDEA.
   User: pasha
@@ -122,40 +121,40 @@
                             <label class="col-lg-3 control-label">Sex:</label>
                             <div class="px-3">
 
-                                <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1"
-                                <c:if test="${user.userProfile.sex!=null}">checked</c:if>
-                                </form:input>
-                                <label for="radio1">Male</label>
+                                    <%-- <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1"
+                                     <c:if test="${user.userProfile.sex!=null}">checked</c:if>
+                                     </form:input>
+                                     <label for="radio1">Male</label>
 
-                                <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1" <c:if test="${user.userProfile.sex!=null}">checked</c:if>
+                                     <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1" <c:if test="${user.userProfile.sex!=null}">checked</c:if>
 
-                                <form:input name="radio_group_2" type="radio" class="with-gap" id="radio2" path="sex"/>
-                                <label for="radio2">Female</label>
-                                <%--
-                                                                <c:choose>
-                                                                    <c:when test="${user.userProfile.sex==Sex.MALE}">
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1" checked>
-                                                                        <label for="radio1">Male</label>
+                                     <form:input name="radio_group_2" type="radio" class="with-gap" id="radio2" path="sex"/>
+                                     <label for="radio2">Female</label>--%>
+                                <c:choose>
+                                    <c:when test="${user.userProfile.sex==Sex.MALE}">
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio1"
+                                               checked>
+                                        <label for="radio1">Male</label>
 
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                                                        <label for="radio2">Female</label>
-                                                                    </c:when>
-                                                                    <c:when test="${user.userProfile.sex==Sex.FEMALE}">
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                                                        <label for="radio1">Male</label>
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
+                                        <label for="radio2">Female</label>
+                                    </c:when>
+                                    <c:when test="${user.userProfile.sex==Sex.FEMALE}">
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
+                                        <label for="radio1">Male</label>
 
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2" checked>
-                                                                        <label for="radio2">Female</label>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                                                        <label for="radio1">Male</label>
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio2"
+                                               checked>
+                                        <label for="radio2">Female</label>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
+                                        <label for="radio1">Male</label>
 
-                                                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                                                        <label for="radio2">Female</label>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                --%>
+                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
+                                        <label for="radio2">Female</label>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         <div class="form-group">
@@ -164,16 +163,16 @@
 
                                 <form:input class="form-control" type="date" id="date-input" path="birthday"/>
 
-                                <%--<input class="form-control" type="date" id="date-input"
-                                <c:choose>
-                                <c:when test="${user.userProfile.birthday !=null}">
-                                       value="${user.userProfile.birthday}"
-                                </c:when>
+                                    <%--<input class="form-control" type="date" id="date-input"
+                                    <c:choose>
+                                    <c:when test="${user.userProfile.birthday !=null}">
+                                           value="${user.userProfile.birthday}"
+                                    </c:when>
 
-                                <c:otherwise>
-                                       value=""
-                                </c:otherwise>
-                                </c:choose>>--%>
+                                    <c:otherwise>
+                                           value=""
+                                    </c:otherwise>
+                                    </c:choose>>--%>
                             </div>
                         </div>
 
@@ -182,19 +181,20 @@
                             <div class="col-lg-8">
 
                                 <form:input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
-                                            data-format="+375 (dd) ddd dd dd" path="phone" val/>
+                                            data-format="+375 (dd) ddd dd dd" path="phone"
+                                            value="${user.userProfile.phone}"/>
 
-                                <%--<input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
-                                       data-format="+375 (dd) ddd dd dd"
-                                <c:choose>
-                                <c:when test="${user.userProfile.phone !=null}">
-                                       value="${user.userProfile.phone}"
-                                </c:when>
+                                    <%--<input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
+                                           data-format="+375 (dd) ddd dd dd"
+                                    <c:choose>
+                                    <c:when test="${user.userProfile.phone !=null}">
+                                           value="${user.userProfile.phone}"
+                                    </c:when>
 
-                                <c:otherwise>
-                                       value=""
-                                </c:otherwise>
-                                </c:choose>>--%>
+                                    <c:otherwise>
+                                           value=""
+                                    </c:otherwise>
+                                    </c:choose>>--%>
                             </div>
                         </div>
 
@@ -210,7 +210,9 @@
                     </div>
                 </div>
             </div>
-            <hr>
+        </div>
+        <hr>
+    </div>
 
 </main>
 

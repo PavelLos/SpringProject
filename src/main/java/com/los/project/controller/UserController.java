@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/profile/edit")
-    public String editProfile(Model model, Errors errors) {
+    public String editProfile(Model model) {
         User user = userService.currentUser();
         UserEditProfileForm editProfileForm = new UserEditProfileForm();
         model.addAttribute("user", user);
