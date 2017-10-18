@@ -1,13 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: pasha
-  Date: 08.10.2017
-  Time: 18:05
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="foem" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page import="com.los.project.entity.enums.Sex" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <head>
     <jsp:include page="../sections/head-config.jsp"/>
@@ -18,205 +16,133 @@
 <main>
 
     <div class="container">
-        <h1>Edit Profile</h1>
+        <h1><spring:message code="header.profile.edit"/></h1>
         <hr>
-        <div class="row">
-            <!-- left column -->
+        <!-- left column -->
 
-            <div class="col-md-3">
-                <div class="text-center">
-                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                    <h6>Upload a different photo...</h6>
+        <form:form method="post" action="${contextPath}/user/profile/edit"
+                   modelAttribute="editProfile" commandName="editProfile" enctype="multipart/form-data">
+            <form:hidden path="login"/>
+            <form:hidden path="password"/>
+            <form:hidden path="email"/>
+            <form:hidden path="userRole"/>
+            <form:hidden path="avatarImage"/>
 
-                    <label class="btn btn-primary cyan btn-file">
-                        <input type="file" name="file" id="file" class="display: none;"/>
-                    </label>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                        <h6><spring:message code="label.profile.upload.file"/></h6>
 
-                    <div>
-                        <label for="file">Choose a file</label>
+                        <form:input type="file" name="file" id="avatar" path="imageFile"/>
+                        <%--<div class="kv-avatar">
+                            <div class="file-loading">
+                                <form:input cssStyle="display: none" id="avatar" name="avatarFile" type="file" path="avatarImage"/>
+                            </div>
+                        </div>--%>
+
+                            <%--<label class="btn btn-primary cyan btn-file">
+                                <form:input type="file" name="file" id="file" class="display: none;" path="avatarImage"/>
+                            </label>--%>
+
+                        <div>
+                            <label for="avatar"><spring:message code="label.profile.choose.file"/></label>
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
+                <!-- edit form column -->
 
-            <!-- edit form column -->
-            <div class="col-md-9 personal-info">
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-                    This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                </div>
-                <h3>Personal info</h3>
-
-                <form:form method="post" action="${contextPath}/user/profile/edit" cssClass="form-horizontal"
-                           role="form"
-                           modelAttribute="editProfile" commandName="editProfile" enctype="utf8">
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">First name:</label>
-                    <div class="col-lg-8">
-
+                <div class="col-md-9 personal-info">
+                    <spring:hasBindErrors name="editProfile">
+                        <div class="alert alert-info alert-dismissable">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+                            This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                        </div>
+                    </spring:hasBindErrors>
+                    <h3><spring:message code="label.profile.personal.info"/></h3>
+                    <div class="form-group">
                         <div class="form-group">
-                            <form:input path="firstName" class="form-control" type="text"
-                                        value="${user.userProfile.firstName}"/>
-                                <%--<input class="form-control" type="text"
-                                <c:choose>
-                                <c:when test="${user.userProfile.firstName !=null}">
-                                       value="${user.userProfile.firstName}"
-                                </c:when>
-
-                                <c:otherwise>
-                                       value=""
-                                </c:otherwise>
-                                </c:choose>>--%>
+                            <label class="col-lg-3 control-label"><spring:message
+                                    code="label.profile.first.name"/></label>
+                            <div class="col-lg-8">
+                                <form:input path="firstName" class="form-control" type="text"
+                                            value="${editProfile.firstName}"/>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Last name:</label>
+                            <label class="col-lg-3 control-label"><spring:message
+                                    code="label.profile.last.name"/></label>
                             <div class="col-lg-8">
                                 <form:input class="form-control" type="text" path="lastName"
-                                            value="${user.userProfile.lastName}"/>
-                                    <%--<c:choose>
-                                    <c:when test="${user.userProfile.lastName !=null}">
-                                           value="${user.userProfile.lastName}"
-                                    </c:when>
-
-                                    <c:otherwise>
-                                           value=""
-                                    </c:otherwise>
-                                    </c:choose>>--%>
+                                            value="${editProfile.lastName}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Middle Name:</label>
+                            <label class="col-lg-3 control-label"><spring:message
+                                    code="label.profile.middle.name"/></label>
                             <div class="col-lg-8">
                                 <form:input class="form-control" type="text" path="middleName"
-                                            value="${user.userProfile.middleName}"/>
-                                    <%--<c:choose>
-                                    <c:when test="${user.userProfile.middleName !=null}">
-                                           value="${user.userProfile.middleName}"
-                                    </c:when>
-
-                                    <c:otherwise>
-                                           value=""
-                                    </c:otherwise>
-                                    </c:choose>>--%>
+                                            value="${editProfile.middleName}"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label>
+                        <%--<div class="form-group">
+                            <label class="col-lg-3 control-label"><spring:message code="label.email"/></label>
                             <div class="col-lg-8">
                                 <form:input class="form-control" type="text" path="email"
-                                            value="${user.userProfile.email}"/>
-                                    <%--<c:choose>
-                                    <c:when test="${user.userProfile.email !=null}">
-                                           value="${user.userProfile.email}"
-                                    </c:when>
-
-                                    <c:otherwise>
-                                           value=""
-                                    </c:otherwise>
-                                    </c:choose>>--%>
+                                            value="${editProfile.email}"/>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Sex:</label>
+                            <label class="col-lg-3 control-label"><spring:message code="label.profile.sex"/></label>
                             <div class="px-3">
-
-                                    <%-- <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1"
-                                     <c:if test="${user.userProfile.sex!=null}">checked</c:if>
-                                     </form:input>
-                                     <label for="radio1">Male</label>
-
-                                     <form:input path="sex" name="radio_group_1" type="radio" class="with-gap" id="radio1" <c:if test="${user.userProfile.sex!=null}">checked</c:if>
-
-                                     <form:input name="radio_group_2" type="radio" class="with-gap" id="radio2" path="sex"/>
-                                     <label for="radio2">Female</label>--%>
-                                <c:choose>
-                                    <c:when test="${user.userProfile.sex==Sex.MALE}">
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1"
-                                               checked>
-                                        <label for="radio1">Male</label>
-
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                        <label for="radio2">Female</label>
-                                    </c:when>
-                                    <c:when test="${user.userProfile.sex==Sex.FEMALE}">
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                        <label for="radio1">Male</label>
-
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2"
-                                               checked>
-                                        <label for="radio2">Female</label>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio1">
-                                        <label for="radio1">Male</label>
-
-                                        <input name="radio_group" type="radio" class="with-gap" id="radio2">
-                                        <label for="radio2">Female</label>
-                                    </c:otherwise>
-                                </c:choose>
+                                <form:radiobutton name="radio_group" class="with-gap" id="radio1" path="sex"
+                                                  value="${Sex.MALE}"/>
+                                <label for="radio1"><spring:message code="label.profile.sex.male"/></label>
+                                <form:radiobutton name="radio_group" class="with-gap" id="radio2" path="sex"
+                                                  value="${Sex.FEMALE}"/>
+                                <label for="radio2"><spring:message code="label.profile.sex.female"/></label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Date of birthday:</label>
+                            <label class="col-lg-4 control-label"><spring:message
+                                    code="label.profile.birthday"/></label>
                             <div class="col-lg-8">
-
-                                <form:input class="form-control" type="date" id="date-input" path="birthday"/>
-
-                                    <%--<input class="form-control" type="date" id="date-input"
-                                    <c:choose>
-                                    <c:when test="${user.userProfile.birthday !=null}">
-                                           value="${user.userProfile.birthday}"
-                                    </c:when>
-
-                                    <c:otherwise>
-                                           value=""
-                                    </c:otherwise>
-                                    </c:choose>>--%>
+                                <form:input class="form-control" type="date" path="birthday"
+                                            value="${editProfile.birthday}"/>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Phone:</label>
+                            <label class="col-lg-3 control-label"><spring:message code="label.profile.phone"/></label>
                             <div class="col-lg-8">
 
                                 <form:input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
                                             data-format="+375 (dd) ddd dd dd" path="phone"
-                                            value="${user.userProfile.phone}"/>
-
-                                    <%--<input type="text" class="input-medium" placeholder="+375 (29) 256 02 15"
-                                           data-format="+375 (dd) ddd dd dd"
-                                    <c:choose>
-                                    <c:when test="${user.userProfile.phone !=null}">
-                                           value="${user.userProfile.phone}"
-                                    </c:when>
-
-                                    <c:otherwise>
-                                           value=""
-                                    </c:otherwise>
-                                    </c:choose>>--%>
+                                            value="${editProfile.phone}"/>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-8">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
+                                <input type="submit" class="btn btn-primary"
+                                       value="<spring:message code="label.profile.save"/>">
                                 <span></span>
-                                <input type="reset" class="btn btn-default" value="Cancel">
+                                <input type="reset" class="btn btn-default"
+                                       value="<spring:message code="label.profile.cancel"/>">
                             </div>
                         </div>
-                        </form:form>
                     </div>
                 </div>
+
+
             </div>
-        </div>
+        </form:form>
         <hr>
     </div>
 
 </main>
 
 <jsp:include page="../sections/scripts.jsp"/>
-<script src="js/custom-file-input.js"></script>
 </body>
 </html>

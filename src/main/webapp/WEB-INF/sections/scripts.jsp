@@ -13,6 +13,8 @@
 <script type="text/javascript" src="${contextPath}/resources/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="${contextPath}/resources/js/mdb.min.js"></script>
+<%--<script type="text/javascript" src="${contextPath}/resources/js/custom-file-input.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/file-upload.js"></script>--%>
 
 
 

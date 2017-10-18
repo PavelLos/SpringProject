@@ -8,7 +8,7 @@ import com.los.project.entity.UserProfile;
 public interface UserProfileService{
 
     UserProfile createNewProfile(UserRegistrationForm registrationModel);
-    UserProfile editUserProfile(UserProfile userProfile, UserEditProfileForm editProfileForm);
+    UserProfile updateUserProfile(UserProfile userProfile);
 
     UserProfile getUserProfileByLogin(String login);
     UserProfile getUserProfileByEmail(String email);

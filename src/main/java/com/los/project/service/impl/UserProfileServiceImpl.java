@@ -1,15 +1,17 @@
 package com.los.project.service.impl;
 
-import com.los.project.entity.User;
-import com.los.project.forms.UserEditProfileForm;
-import com.los.project.forms.UserRegistrationForm;
+import com.los.project.entity.Image;
 import com.los.project.entity.UserProfile;
 import com.los.project.entity.enums.UserRole;
+import com.los.project.forms.UserEditProfileForm;
+import com.los.project.forms.UserRegistrationForm;
 import com.los.project.repository.UserProfileRepository;
 import com.los.project.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
@@ -27,18 +29,13 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfile.setLogin(registrationModel.getLogin());
         userProfile.setPasswordHash(passwordEncoder.encode(registrationModel.getPassword()));
         userProfile.setRole(UserRole.USER);
+        userProfile.setAvatarImage(new Image());
         return userProfile;
     }
 
     @Override
-    public UserProfile editUserProfile(UserProfile userProfile, UserEditProfileForm editProfileForm) {
-        userProfile.setFirstName(editProfileForm.getFirstName());
-        userProfile.setLastName(editProfileForm.getLastName());
-        userProfile.setMiddleName(editProfileForm.getMiddleName());
-        userProfile.setEmail(editProfileForm.getEmail());
-        userProfile.setSex(editProfileForm.getSex());
-        userProfile.setBirthday(editProfileForm.getBirthday());
-        userProfile.setPhone(editProfileForm.getPhone());
+    public UserProfile updateUserProfile(UserProfile userProfile) {
+        userProfileRepository.saveAndFlush(userProfile);
         return userProfile;
     }
 

@@ -52,6 +52,7 @@ public class UserProfile implements Serializable {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "avatarImage")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
     private Image avatarImage;
 }

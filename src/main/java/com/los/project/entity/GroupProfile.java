@@ -28,7 +28,8 @@ public class GroupProfile implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "image")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_avatar")
     private Image avatar;
 
 }
